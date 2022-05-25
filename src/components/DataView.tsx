@@ -31,6 +31,9 @@ const DataView = (props: Props) => {
                         <th scope="col" className="px-6 py-3">
                             Valor
                         </th>
+                        <th scope="col" className="px-6 py-3">
+                            
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +62,22 @@ const DataView = (props: Props) => {
                                 </td>
                                 <td className="px-6 py-4">
                                     R${items.valor}
+                                </td>
+                                <td className="px-6 py-4 text-red-500">
+                                    <button onClick={async ()=>{
+
+                                        const { data, error } = await supabase
+                                            .from('despesas')
+                                            .delete()
+                                            .eq('id', items.id)
+                                        
+                                            if(error){
+                                                alert('erro ao excluir')
+                                            }else{
+                                                alert('excluido com sucesso')
+                                                document.location.reload()
+                                            }
+                                    }}>Deletar</button>
                                 </td>
                             </tr>
 
