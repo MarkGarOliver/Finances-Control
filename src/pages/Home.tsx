@@ -2,10 +2,14 @@
 import * as React from 'react';
 import { useState } from 'react';
 import DataView from '../components/DataView';
+import { Footer } from '../components/Footer';
 import InputData from '../components/InputData';
 import ResumeBar from '../components/ResumeBar';
 import supabase from '../services/supabase';
 import supabaseAxios from '../services/supabaseAxios';
+//toasts
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export interface Registros {
     id: number
@@ -27,7 +31,7 @@ const Home = () => {
 
     // chamadas supabase
         const NewRegistro = async () => {
-
+            
             const { data, error } = await supabase
                 .from('despesas')
                 .insert([
@@ -35,46 +39,40 @@ const Home = () => {
                 ])
 
             if (error) {
-                alert('erro ao salvar')
+                toast.error('Erro ao Salvar')
             } else {
-                alert('salvo com sucesso')
+                // alert('salvo com sucesso')
+                // usar toast
+                toast.success('Salvo com Sucesso')
+
             }
+            setTimeout(Filtrar, 2000);
+
         }
 
         const GetRegistros = async () => {
+           
             const { data } = await supabaseAxios.get('/despesas?user_id=eq.2157&select=*')
             setRegistros(data)
         }
 
         const Filtrar = () => {
-
-            var dados: Registros[] = []
-
-            Registros.map((item)=>{
-                
-                const strData = item.data.substring(0, item.data.length - 3);
-
-                const dataV = `${dataView}`
-                
-                
-                if(strData == dataV){
-                    dados.push(item)
-                    
-                    
-                    
-                }
-
-                
-            })
-
-            console.log(dados);
             
-           setRegistrosFiltrados(dados)
-           console.log(RegistrosFiltrados);
-           
-            
-            
-        
+            try {
+                var dados: Registros[] = []
+    
+                Registros.map((item)=>{
+                    const strData = item.data.substring(0, item.data.length - 3);
+                    const dataV = `${dataView}`
+                    if(strData == dataV){
+                        dados.push(item)
+                    }   
+                })
+    
+               setRegistrosFiltrados(dados)
+            } catch (error) {
+                toast.error('Erro ao Fazer busca')
+            }
         }
 
     // captura de dados 
@@ -110,11 +108,16 @@ const Home = () => {
 
     React.useEffect(() => {
         GetRegistros()
-    })
+        console.log('entrou no effect');
+        
+        // Filtrar()
+    }, [RegistrosFiltrados])
+
+    
 
     return (
-        <div className="text-white bg-slate-900 h-screen p-11">
-            <h1 className='font-bold uppercase text-xl text-center mb-10'>Finances Control</h1>
+        <div className="text-white p-11">
+            {/* <h1 className='font-bold uppercase text-xl text-center mb-10'>Finances Control</h1> */}
 
             <ResumeBar 
                 registros={RegistrosFiltrados}
@@ -131,12 +134,15 @@ const Home = () => {
             />
 
             <div className='mt-10'>
-
                 <DataView
                     registros={RegistrosFiltrados}
                 />
             </div>
-
+            <ToastContainer
+             theme='dark'
+             
+             />
+            
         </div>
     );
 };

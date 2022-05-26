@@ -2,6 +2,9 @@
 import * as React from 'react';
 import { Registros } from '../pages/Home'
 import supabase from '../services/supabase';
+//toasts
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {
 
@@ -15,7 +18,7 @@ const DataView = (props: Props) => {
 
     return (
 
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div className="relative overflow-x-auto overflow-y-auto h-[400px] shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-slate-900 uppercase bg-slate-600">
                     <tr>
@@ -36,7 +39,7 @@ const DataView = (props: Props) => {
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className='overflow-scroll h-[290px]'>
                     {
                         registros.map((items) => (
                             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -72,10 +75,10 @@ const DataView = (props: Props) => {
                                             .eq('id', items.id)
                                         
                                             if(error){
-                                                alert('erro ao excluir')
+                                                toast.error('Erro ao deletar !')
                                             }else{
-                                                alert('excluido com sucesso')
-                                                document.location.reload()
+                                                toast.success('Excluido com sucesso')
+                                                toast.info('clique em buscar para atualizar a lista')
                                             }
                                     }}>Deletar</button>
                                 </td>

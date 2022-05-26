@@ -26,12 +26,12 @@ const InputData = (props: Props) => {
 
             <div >
                 <label className='block mb-2 font-medium text-lg' htmlFor="data">Data</label>
-                <input onChange={onChangeData} className='rounded-lg w-64 p-2 font-semibold text-black' type="date" id='data' />
+                <input onChange={onChangeData} className='rounded-lg w-64 mr-4 p-2 font-semibold text-black' type="date" id='data' />
             </div>
 
             <div>
                 <label className='block mb-2 font-medium text-lg' htmlFor="data">Titulo</label>
-                <input onChange={onChangeTitulo} className='rounded-lg w-64 p-2 font-semibold text-black' type="text" />
+                <input onChange={onChangeTitulo} className='rounded-lg w-64 mr-4 p-2 font-semibold text-black' type="text" />
             </div>
 
 
@@ -40,7 +40,7 @@ const InputData = (props: Props) => {
 
             <div>
                 <label  className='block mb-2 font-medium text-lg' htmlFor="data">Valor</label>
-                <input onChange={onChangeValor} className='rounded-lg w-64 p-2 font-semibold text-black placeholder-black' type="number" placeholder='0' />
+                <input onChange={onChangeValor} className='rounded-lg w-64 mr-4 p-2 font-semibold text-black placeholder-black' type="number" placeholder='0' />
             </div>
 
             <div>
@@ -59,7 +59,7 @@ const InputData = (props: Props) => {
 
             </div>
 
-            <button onClick={onclickButton} className='bg-slate-700 w-64 h-11 mt-9 rounded-lg hover:bg-slate-600'>Adicionar</button>
+            <button onClick={onclickButton} className='bg-slate-700 w-64 mr-4 h-11 mt-9 rounded-lg hover:bg-slate-600'>Adicionar</button>
 
         </div>
     );
