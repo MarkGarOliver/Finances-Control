@@ -18,7 +18,7 @@ const DataView = (props: Props) => {
 
     return (
 
-        <div className="relative overflow-x-auto overflow-y-auto h-[400px] shadow-md sm:rounded-lg">
+        <div className="relative w-64 md:w-auto mr-auto ml-auto overflow-x-auto overflow-y-auto md:h-[400px] shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-slate-900 uppercase bg-slate-600">
                     <tr>

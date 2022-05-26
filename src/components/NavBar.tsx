@@ -6,7 +6,7 @@ type Props = {
 export const NavBar = (props: Props) => {
     return (
         <div>
-            <aside className="w-80" aria-label="Sidebar">
+            <aside className="w-80 hidden md:block" aria-label="Sidebar">
                 <div className="h-screen overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-slate-800">
                     <ul className="space-y-2">
                         <li>

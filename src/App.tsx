@@ -19,9 +19,9 @@ function App() {
         <Home/>
       </div>
 
-      <div>
-        <Footer/>
-      </div>
+      
+      <Footer/>
+      
 
     </div>
       
